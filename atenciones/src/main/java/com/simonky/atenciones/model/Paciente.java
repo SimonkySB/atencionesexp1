@@ -1,6 +1,8 @@
 package com.simonky.atenciones.model;
 
 
+import org.springframework.hateoas.RepresentationModel;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,7 +16,7 @@ import jakarta.validation.constraints.Pattern.Flag;
 
 @Entity
 @Table(name = "paciente")
-public class Paciente {
+public class Paciente extends RepresentationModel<Paciente>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

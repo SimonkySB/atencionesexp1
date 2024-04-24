@@ -1,6 +1,5 @@
 package com.simonky.atenciones.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,21 +60,7 @@ public class PacienteServiceImpl implements PacienteService {
         return pacienteRepository.save(paciente);
     }
 
-    @Override
-    public void Iniciar() {
-        List<Paciente> pacientes = new ArrayList<>();
-        
-        for(int i = 0; i < 5; i++) {
-            Paciente user = new Paciente();
-            user.setNombre("Paciente " + (i+1));
-            user.setEmail("paciente" + (i+1) + "@email.com");
-            user.setFono("+569 123" + (i+1));
-            pacientes.add(user);
-        }
-        
-        this.pacienteRepository.saveAll(pacientes);
-    }
-
+    
     @Override
     public List<AtencionPacienteDto> getAtencionesPacientes(Long id) {
         pacienteRepository.findById(id)
@@ -84,15 +69,25 @@ public class PacienteServiceImpl implements PacienteService {
         return this.atencionesRepository.findByPacienteId(id);
     }
 
+     @Override
+    public AtencionPacienteDto getAtencionPacienteById(Long pacienteId, Long atencionId) {
+        var atencion = this.atencionesRepository.findById(atencionId)
+            .stream()
+            .filter(a -> a.getPaciente().getId() == pacienteId)
+            .findFirst()
+            .orElseThrow(() -> new AtencionNotFoundException(atencionId));
+        return fromEntity(atencion);
+    }
+
     @Override
-    public Atencion createAtencionPaciente(Long id, Atencion atencion) {
+    public AtencionPacienteDto createAtencionPaciente(Long id, Atencion atencion) {
         Paciente paciente = this.pacienteRepository.findById(id)
             .orElseThrow(() -> new PacienteNotFoundException(id));
 
         atencion.setId(null);
         atencion.setPaciente(paciente);
 
-        return this.atencionesRepository.save(atencion);
+        return fromEntity(this.atencionesRepository.save(atencion));
     }
 
     @Override
@@ -106,5 +101,27 @@ public class PacienteServiceImpl implements PacienteService {
 
         this.atencionesRepository.delete(atencion);
     }
-    
+
+    @Override
+    public AtencionPacienteDto updateAtencionPaciente(Long pacienteId, Long atencionId, Atencion atencion) {
+        Atencion atencionDb = this.atencionesRepository.findById(atencionId)
+            .orElseThrow(() -> new AtencionNotFoundException(atencionId));
+
+        if(atencionDb.getPaciente().getId() != pacienteId) {
+            throw new AtencionNotFoundException(atencionId);
+        }
+
+        atencionDb.setFechaAtencion(atencion.getFechaAtencion());
+        atencionDb.setObservacion(atencion.getObservacion());
+        atencionDb.setValor(atencion.getValor());
+        
+
+        return fromEntity(this.atencionesRepository.save(atencionDb));
+    }
+
+ 
+
+    public AtencionPacienteDto fromEntity(Atencion atencion){
+        return new AtencionPacienteDto(atencion.getId(), atencion.getFechaAtencion(), atencion.getValor(), atencion.getObservacion());
+    }
 }

@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
+import org.springframework.hateoas.RepresentationModel;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -21,7 +22,7 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "atencion")
-public class Atencion {
+public class Atencion extends RepresentationModel<Atencion>{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
