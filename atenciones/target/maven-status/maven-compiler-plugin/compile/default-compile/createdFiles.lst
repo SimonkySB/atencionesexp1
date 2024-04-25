@@ -1,0 +1,14 @@
+com\simonky\atenciones\exceptions\ExceptionTranslator$InvalidatedParams.class
+com\simonky\atenciones\exceptions\AtencionNotFoundException.class
+com\simonky\atenciones\exceptions\ExceptionTranslator.class
+com\simonky\atenciones\repository\PacienteRepository.class
+com\simonky\atenciones\controller\PacienteController.class
+com\simonky\atenciones\exceptions\ExceptionTranslator$InvalidatedParams$InvalidatedParamsBuilder.class
+com\simonky\atenciones\service\PacienteServiceImpl.class
+com\simonky\atenciones\exceptions\PacienteNotFoundException.class
+com\simonky\atenciones\AtencionesApplication.class
+com\simonky\atenciones\model\Atencion.class
+com\simonky\atenciones\model\Paciente.class
+com\simonky\atenciones\repository\AtencionRepository.class
+com\simonky\atenciones\dtos\AtencionPacienteDto.class
+com\simonky\atenciones\service\PacienteService.class

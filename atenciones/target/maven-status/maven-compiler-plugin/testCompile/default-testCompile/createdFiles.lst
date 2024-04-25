@@ -1,0 +1,4 @@
+com\simonky\atenciones\service\PacienteServiceTest.class
+com\simonky\atenciones\AtencionesApplicationTests.class
+com\simonky\atenciones\controller\PacienteControllerTest.class
+com\simonky\atenciones\repository\PacienteRepositoryTest.class
