@@ -70,7 +70,7 @@ public class PacienteServiceTest {
     }
 
     @Test
-    public void eliminarUsuarioNoExistenteTest() {
+    public void eliminarPacienteNoExistenteTest() {
         
         Long id = 999L;
 
