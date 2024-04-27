@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.simonky.atenciones.repository.PacienteRepositoryTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.383 s -- in com.simonky.atenciones.repository.PacienteRepositoryTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.952 s -- in com.simonky.atenciones.repository.PacienteRepositoryTest
